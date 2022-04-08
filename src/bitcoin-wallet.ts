@@ -1,16 +1,25 @@
-export interface IBitcoinWallet {
-    publicKey: string
-    privateKey: string
-}
-export class BitcoinWallet {
+import { IWalletInfo } from "./wallet-info-interface.ts"
+import { IWallet } from "./wallet-interface.ts";
 
-    public generateWallet(): IBitcoinWallet {
+export class BitcoinWallet implements IWallet {
 
+    private privateKey: string
+    private publicKey: string
+
+    public static getInstance(): IWallet {
+        return new BitcoinWallet()
+    }
+
+    public constructor() {
+        this.privateKey = "tbd"
+        this.publicKey = "tbd"
+    }
+
+    public getWalletInfo(): IWalletInfo {
         return {
-            publicKey: "tbd",
-            privateKey: "tbd",
+            privateKey: this.privateKey,
+            publicKey: this.publicKey
         }
-
     }
 
 }

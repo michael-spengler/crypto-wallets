@@ -1,16 +1,25 @@
-export interface IEthereumWallet {
-    publicKey: string
-    privateKey: string
-}
-export class EthereumWallet {
+import { IWalletInfo } from "./wallet-info-interface.ts"
+import { IWallet } from "./wallet-interface.ts";
 
-    public generateWallet(): IEthereumWallet {
+export class EthereumWallet implements IWallet {
 
+    private privateKey: string
+    private publicKey: string
+
+    public static getInstance(): IWallet {
+        return new EthereumWallet()
+    }
+
+    public constructor() {
+        this.privateKey = "tbd"
+        this.publicKey = "tbd"
+    }
+
+    public getWalletInfo(): IWalletInfo {
         return {
-            publicKey: "tbd",
-            privateKey: "tbd",
+            privateKey: this.privateKey,
+            publicKey: this.publicKey
         }
-
     }
 
 }
